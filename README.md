@@ -1,6 +1,6 @@
 # iNotebook
 
-Made with React.js, Express.js and MongoDB
+Your notes secured in the cloud. A full-stack web application built using MERN stack, specifically `React.js` as frontend and `Express.js` and `MongoDB` as backend.
 
 ## Table of Contents
 
