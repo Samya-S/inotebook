@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const Signup = (props) => {
-    const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: ""});
+    const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: "" });
     const navigate = useNavigate();
 
     const onChange = (e) => {
@@ -12,33 +12,34 @@ const Signup = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if(credentials.password !== credentials.cpassword){
+        if (credentials.password !== credentials.cpassword) {
             props.showAlert("Passwords do not match", "Danger");
             return;
         }
 
-        const url = "http://localhost:5000/api/auth/createuser";
+        const host = process.env.REACT_APP_BACKEND_HOSTING_DOMAIN;
+        const url = `${host}/api/auth/createuser`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({name: credentials.name, email: credentials.email, password: credentials.password}),
+            body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password }),
         });
         const json = await response.json();
-        console.log(json);
+        // console.log(json);
 
-        if(json.success){
+        if (json.success) {
             // Save the auth token and redirect
             localStorage.setItem('token', json.authToken);
             navigate("/");
             props.showAlert("Account created successfully", "Success");
         }
-        else{
-            if(json.error){
+        else {
+            if (json.error) {
                 props.showAlert(json.error, "Danger");
             }
-            else if(json.errors){
+            else if (json.errors) {
                 json.errors.map((error) => {
                     return props.showAlert(error.msg, "Danger");
                 })

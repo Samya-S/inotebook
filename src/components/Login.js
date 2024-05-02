@@ -11,8 +11,9 @@ const Login = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const url = "http://localhost:5000/api/auth/login";
+        
+        const host = process.env.REACT_APP_BACKEND_HOSTING_DOMAIN;
+        const url = `${host}/api/auth/login`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -21,7 +22,7 @@ const Login = (props) => {
             body: JSON.stringify(credentials),
         });
         const json = await response.json();
-        console.log(json);
+        // console.log(json);
 
         if(json.success){
             // Save the auth token and redirect

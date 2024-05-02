@@ -1,70 +1,109 @@
-# Getting Started with Create React App
+# iNotebook
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Made with React.js, Express.js and MongoDB
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Folder structure](#folder-structure)
+- [Installation](#installation)
+- [Defining env variables](#defining-environment-variables)
+- [Run the development environment](#run-the-development-environment)
 
-### `npm start`
+## Folder structure
+```bash
+inotebook
+├── backend
+│   ├── ...
+│   └── ...
+├── public
+│   └── ...
+├── src
+│   ├── ...
+│   └── ...
+├── .gitignore
+├── package-lock.json
+├── package.json
+└── README.md
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository:
 
-### `npm test`
+    ```bash
+    git clone git@github.com:Samya-S/inotebook.git
+    ```
+    `Make sure you have SSH keys setup in your machine`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Navigate to the project directory:
 
-### `npm run build`
+    ```bash
+    cd inotebook
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Install dependencies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   In the parent directory
+   ```bash
+   npm i
+   ```
+   
+   In the backend directory
+   ```bash
+   cd backend
+   npm i
+   ```
+   `Make sure to have nodejs and npm installed`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Defining environment variables
 
-### `npm run eject`
+1. In the parent directory:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    ```bash
+    REACT_APP_BACKEND_HOSTING_DOMAIN = '<backend hosting domain url>'
+    ```
+1. In the backend directory:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    ```bash
+    MONGO_URI = '<mongo db url>'
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Run the development environment
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### To run both together
 
-## Learn More
+1. Navigate to the parent directory
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Use the following command to run:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    ```bash
+    npm run both
+    ```
 
-### Code Splitting
+### To run the frontend separately: 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Navigate to the parent directory
 
-### Analyzing the Bundle Size
+2. Use the following command to run:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    ```bash
+    npm start
+    ```
 
-### Making a Progressive Web App
+### To run the backend separately: 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. Navigate to the backend directory:
 
-### Advanced Configuration
+    ```bash
+    cd backend
+    ```
+    
+2. Use the following command to run:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    ```bash
+    nodemon index.js
+    ```
+   or alternatively
+    ```bash
+    npm start
+    ```

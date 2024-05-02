@@ -2,7 +2,7 @@ import { useState } from "react";
 import NoteContext from "./noteContext";
 
 const NoteState = (props) => {
-    const host = "http://localhost:5000";
+    const host = process.env.REACT_APP_BACKEND_HOSTING_DOMAIN;
 
     const initialNotes = []
 
@@ -10,7 +10,6 @@ const NoteState = (props) => {
 
     // Get all notes
     const getNotes = async () => {
-        // API call
         const url = `${host}/api/notes/fetchallnotes`;
         const response = await fetch(url, {
             method: 'GET',
@@ -43,7 +42,6 @@ const NoteState = (props) => {
 
     // delete a note
     const deleteNote = async (id) => {
-        // TODO: API call to delete note
         const url = `${host}/api/notes/deletenote/${id}`;
         const response = await fetch(url, {
             method: 'DELETE',
@@ -61,7 +59,6 @@ const NoteState = (props) => {
 
     // edit a note
     const editNote = async (id, title, description, tag) => {
-        // TODO: API call to edit note
         const url = `${host}/api/notes/updatenote/${id}`;
         const response = await fetch(url, {
             method: 'PUT',
