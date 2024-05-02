@@ -12,7 +12,7 @@ import NoteState from './context/notes/NoteState';
 import Alert from './components/Alert';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const [alert, setAlert] = useState(null)
@@ -26,6 +26,33 @@ function App() {
       setAlert(null)
     }, 1500);
   }
+
+  const [backendStatus, setBackendStatus] = useState('Checking...');
+    
+    const checkBackendStatus = async () => {
+        const url = process.env.REACT_APP_BACKEND_HOSTING_DOMAIN;
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            const json = await response.json();
+            // console.log(json);
+            if (json.status) {
+                setBackendStatus('Backend is live: ' + json.message);
+            } else {
+                setBackendStatus('Backend is not running');
+            }
+        } catch (error) {
+            setBackendStatus('Backend is not running');
+        }
+    };
+
+    useEffect(() => {
+        checkBackendStatus();
+    }, []);
 
   return (
     <>
@@ -41,6 +68,7 @@ function App() {
               <Route exact path="/signup" element={<Signup showAlert={showAlert} />} />
             </Routes>{/* </Switch> */}
           </div>
+          <div className="container text-muted my-5">{backendStatus}</div>
         </Router>
       </NoteState>
     </>

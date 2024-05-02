@@ -7,12 +7,12 @@ connectToMongo();
 const app = express()
 const port = 5000
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
 app.use(cors())
 app.use(express.json()) // to use req.body
+
+app.get('/', (req, res) => {
+  res.json({ status: true, message: "iNotebook backend running successfully" })
+})
 
 // available routes
 app.use('/api/auth', require('./routes/auth'))
