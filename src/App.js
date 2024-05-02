@@ -31,7 +31,7 @@ function App() {
     <>
       <NoteState>
         <Router>
-          <Navbar />
+          <Navbar showAlert={showAlert} />
           <Alert alertMsg={alert} />
           <div className='container'>
             <Routes>{/* <Switch> */}
