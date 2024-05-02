@@ -6,7 +6,7 @@ Made with React.js, Express.js and MongoDB
 
 - [Folder structure](#folder-structure)
 - [Installation](#installation)
-- [Defining env variables](#defining-environment-variables)
+- [Defining environment variables](#defining-environment-variables)
 - [Run the development environment](#run-the-development-environment)
 
 ## Folder structure
