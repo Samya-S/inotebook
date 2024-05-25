@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-// this should be actually in .env.local or config file (also redefined in routes/auth.js)
-const jwt_secret = "ykrubru08hjhc";
+const jwt_secret = process.env.JWT_SECRET;
 
 const fetchuser = (req, res, next) => {
     // Get the user from the jwt token and add id to req object
