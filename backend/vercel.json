@@ -16,10 +16,5 @@
             "src": "/(.*)",
             "dest": "index.js"
         }
-    ],
-    "functions": {
-        "./**": {
-            "runtime": "@vercel/edge-functions"
-        }
-    }
+    ]
 }
