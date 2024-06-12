@@ -28,31 +28,31 @@ function App() {
   }
 
   const [backendStatus, setBackendStatus] = useState('Checking...');
-    
-    const checkBackendStatus = async () => {
-        const url = process.env.REACT_APP_BACKEND_HOSTING_DOMAIN;
-        try {
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            });
-            const json = await response.json();
-            // console.log(json);
-            if (json.status) {
-                setBackendStatus('Backend is live: ' + json.message);
-            } else {
-                setBackendStatus('Backend is not running');
-            }
-        } catch (error) {
-            setBackendStatus('Backend is not running');
-        }
-    };
 
-    useEffect(() => {
-        checkBackendStatus();
-    }, []);
+  const checkBackendStatus = async () => {
+    const url = process.env.REACT_APP_BACKEND_HOSTING_DOMAIN;
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+      const json = await response.json();
+      // console.log(json);
+      if (json.status) {
+        setBackendStatus('Backend is live: ' + json.message);
+      } else {
+        setBackendStatus('Backend is not running');
+      }
+    } catch (error) {
+      setBackendStatus('Backend is not running');
+    }
+  };
+
+  useEffect(() => {
+    checkBackendStatus();
+  }, []);
 
   return (
     <>

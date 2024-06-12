@@ -7,18 +7,32 @@ import { useNavigate } from 'react-router-dom';
 const Notes = (props) => {
     const context = useContext(noteContext);
     const { notes, getNotes, editNote } = context;
+    const [user, setUser] = useState({ name: "loading...", email: "" });
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (localStorage.getItem('token')){
+        if (localStorage.getItem('token')) {
             getNotes();
+            getUser();
         }
-        else{
+        else {
             navigate('/login');
             props.showAlert("You are not logged in. Please login to see your notes", "Danger");
         }
         // eslint-disable-next-line
     }, [])
+
+    const getUser = async () => {
+        const response = await fetch(process.env.REACT_APP_BACKEND_HOSTING_DOMAIN + '/api/auth/getuser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            }
+        });
+        const json = await response.json();
+        setUser({ name: json.name, email: json.email });
+    }
 
     const ref = useRef(null);
     const refClose = useRef(null);
@@ -42,6 +56,8 @@ const Notes = (props) => {
 
     return (
         <>
+            <h1 className='container'>Welcome {user.name}!</h1>
+
             <AddNote showAlert={props.showAlert} />
 
             {/* <!-- Button trigger modal --> */}
@@ -82,7 +98,7 @@ const Notes = (props) => {
             </div>
 
 
-            <div className="row my-3">
+            <div className="container row my-3">
                 <h1>Your notes</h1>
                 <div className="container mx-1">
                     {notes.length === 0 && 'No notes to display'}
