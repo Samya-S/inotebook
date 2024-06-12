@@ -68,7 +68,7 @@ function App() {
               <Route exact path="/signup" element={<Signup showAlert={showAlert} />} />
             </Routes>{/* </Switch> */}
           </div>
-          <div className="container text-muted my-5">{backendStatus}</div>
+          <div className="container text-muted my-5"><div className="container">{backendStatus}</div></div>
         </Router>
       </NoteState>
     </>
